@@ -1,0 +1,38 @@
+function [Tans]= temperature(x,tg)
+ %tg= given time
+ %at x=0 T=200 always so we are running this code form x=0.016;
+
+
+ time=0;
+ deltat=10 ;%in seconds
+ k= tg/deltat;
+ T=zeros(11,k)+200;%T(i) represents temperature at ith position
+at t=0
+ d=zeros(11);
+ for i=1:11
+ d(i)=0.016*(i-1);
+ end
+ count =1;
+ while(time<=tg)
+ count=count+1;
+ time = time+deltat;
+ T(2,count)=0.029*T(2,count-1)+0.440*T(3,count-1)+90.3;
+ for i = 3:10
+ T(i,count)=0.029*T(i,count-1)+0.440*(T(i-1,count1)+T(i+1,count-1))+2.3;
+ end
+ T(11,count)=0.88*T(10,count-1)+3;
+ if( time ==400||time ==200|| time==280)
+ plot(d,T(:,count));
+ hold on;
+ end
+ end
+ l=1;
+ while(x>=0)
+ x=x-l*0.016;
+ l=l+1;
+ end
+Tans =T(l+2,count);
+xlabel('distance');
+ylabel(' temperature');
+legend('200','400','tk');
+end
